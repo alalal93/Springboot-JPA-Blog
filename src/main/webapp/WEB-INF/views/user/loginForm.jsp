@@ -15,7 +15,7 @@
 			</label>
 		</div>
 			</form>
-	<button type="btn-login" class="btn btn-primary">Login</button>
+	<button id="btn-login" class="btn btn-primary">Login</button>
 </div>
 
 <script src="/blog/js/user.js"> </script>
