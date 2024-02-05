@@ -29,7 +29,7 @@ public class UserAPIController {
 
 	/*
 	 * @PostMapping("api/user/login") public ResponseDto<Integer> login(@RequestBody
-	 * User user, HttpSession session){
+	 * User user,  HttpSession session){
 	 * System.out.println("UserApiController : login 호출됨"); User principal =
 	 * userService.로그인(user); //principal (접근주체)
 	 * 
