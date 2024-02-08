@@ -18,8 +18,6 @@ public class UserController {
 	
 	@GetMapping("/auth/loginForm")
 	public String loginForm() {
-		System.out.println("Loding");
-		
 		return "user/loginForm";
 	}
 }

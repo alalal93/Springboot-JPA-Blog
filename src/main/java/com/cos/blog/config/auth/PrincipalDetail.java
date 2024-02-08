@@ -18,6 +18,7 @@ public class PrincipalDetail implements UserDetails{
 	private User user; // 콤포지션
 	
 	public PrincipalDetail(User user) {
+		super();
 		this.user = user;
 	}
 
