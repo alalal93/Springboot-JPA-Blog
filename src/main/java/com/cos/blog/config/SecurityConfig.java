@@ -39,9 +39,10 @@ public class SecurityConfig {
 
 		http.csrf().disable() // csrf 토근 비활성화 (테스트시 걸어두는 게 좋음)
 				.authorizeHttpRequests().requestMatchers("/auth/**", "js/**", "/css/**", "/image/**", "/**").permitAll()
-				.anyRequest().authenticated().and().formLogin().loginPage("/auth/loginForm")
+				.anyRequest().authenticated().and().formLogin()
+				.loginPage("/auth/loginForm")
 				.loginProcessingUrl("/auth/loginProc") // 스프링 시큐리티가 해당 주소로 로그인을 가로채서 대신 로그인 해준다.
-				.defaultSuccessUrl("/");
+				.defaultSuccessUrl("/",true);
 
 		return http.build();
 	}

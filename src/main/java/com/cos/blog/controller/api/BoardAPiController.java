@@ -19,8 +19,9 @@ public class BoardAPiController {
 	private BoardService boardService;
 		
 	
-	@PostMapping("/api/board")
+	@PostMapping("api/board")
 	public ResponseDto<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {
+		System.out.println("BoardApiController: 호출됨");
 				boardService.글쓰기(board, principal.getUser());
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); 
 
