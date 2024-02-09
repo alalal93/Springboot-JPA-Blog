@@ -2,6 +2,10 @@ package com.cos.blog.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,13 +15,18 @@ import com.cos.blog.dto.ResponseDto;
 import com.cos.blog.model.User;
 import com.cos.blog.service.UserService;
 
+
+
+
+
 @RestController
 public class UserAPIController {
 
 	@Autowired
 	private UserService userService;
 	
-
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	
 
 	@PostMapping("auth/joinProc")
@@ -28,10 +37,16 @@ public class UserAPIController {
 	}
 
 	@PutMapping("/user")
-	public ResponseDto<Integer>update(@RequestBody User user){ // key=value, x-www-form-urlencoded
+	public ResponseDto<Integer>update(@RequestBody User user 
+			
+			){ // key=value, x-www-form-urlencoded
 		userService.회원수정(user);
 		// 여기서는 트랜잭션이 종료되었기 때문에 DB값변경됨
-		// 하지만 세션값은 병경되지 않은상태임
+		// 하지만 세션값은 병경되지 않은상태임 그래서 직접 세션값을 변경해줘야함
+		//세션 등록
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 		
 	}
