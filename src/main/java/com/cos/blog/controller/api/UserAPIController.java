@@ -3,6 +3,7 @@ package com.cos.blog.controller.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,4 +27,14 @@ public class UserAPIController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴 (Jackson)
 	}
 
+	@PutMapping("/user")
+	public ResponseDto<Integer>update(@RequestBody User user){ // key=value, x-www-form-urlencoded
+		userService.회원수정(user);
+		// 여기서는 트랜잭션이 종료되었기 때문에 DB값변경됨
+		// 하지만 세션값은 병경되지 않은상태임
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+		
+	}
+	
+	
 }
