@@ -13,7 +13,7 @@ let index = {
 				this.update();
 			});
 			
-				$("#btn-reply-save").on("click",()=>{
+				$("#btn-reply-save").on("click", ()=>{
 				this.replySave();
 			});
 	},	
@@ -109,13 +109,6 @@ let index = {
 					})
 	},		
 	
-	replySave: function(){
-			let data = {
-						userId:$("#userId").val(),
-						boardId:$("#boardId").val(),
-						content: $("#reply-content").val()
-						}
-		},
 		
 		replyDelete : function(boardId, replyId){
 		$.ajax({
