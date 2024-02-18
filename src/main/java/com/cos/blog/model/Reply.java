@@ -26,9 +26,10 @@ public class Reply {
 	@Id // primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // autu_increment
 	private int id;
-
+	
 	@Column(nullable = false, length = 200)
 	private String content;
+	
 	@ManyToOne
 	@JoinColumn(name="boardId")
 	private Board board;
@@ -39,5 +40,6 @@ public class Reply {
 	
 	@CreationTimestamp
 	private Timestamp createDate;
-
+	
+	
 }

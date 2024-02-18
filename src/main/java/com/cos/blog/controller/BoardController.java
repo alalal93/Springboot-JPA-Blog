@@ -35,6 +35,7 @@ import com.cos.blog.service.BoardService;
 		@GetMapping("/board/{id}")
 		public String findById(@PathVariable int id, Model model) {
 			model.addAttribute("board", boardService.글상세보기(id));
+			
 			return "board/detail";
 		}
 		@GetMapping("/board/{id}/updateForm")
